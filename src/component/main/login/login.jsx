@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './login.css';
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Login() {
+
+    const { loginWithRedirect } = useAuth0();
+
     return(
         <main className="form-signin">
         <form className="form-box">
@@ -25,7 +28,7 @@ function Login() {
             </label>
             </div>
             <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-            <Link className="mt-5 mb-3 text-primary text-center w-100 float-start" to="/">Back To Home</Link>
+            <Link onClick={() => loginWithRedirect()} className="mt-5 mb-3 text-primary text-center w-100 float-start" to="/">Login With Google</Link>
             <p className="mt-5 mb-3 text-muted text-center">&copy; 2017–2021</p>
         </form>
         </main>

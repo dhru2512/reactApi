@@ -5,7 +5,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 
 function Header() {
 
-  const { loginWithRedirect } = useAuth0(); 
+  const { loginWithRedirect, isAuthenticated, logout } = useAuth0(); 
 
   const menuArry = [
     { id: 1, title: 'Home' },
@@ -38,8 +38,13 @@ function Header() {
             </form>
 
             <div className="text-end">
-              <button onClick={() => loginWithRedirect}  className="btn btn-outline-light me-2">Login</button>
-              <button type="button" className="btn btn-warning">Sign-up</button>
+
+              {!isAuthenticated ? "" :
+              <button onClick={() => logout({ returnTo: window.location.origin })}  className="btn btn-outline-light me-2">Logout</button>
+              }
+              
+              
+              
             </div>
           </div>
         </div>
